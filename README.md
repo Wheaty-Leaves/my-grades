@@ -1,11 +1,8 @@
-# README
+# Canvas Student Marks Extender
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project aims to provide a way for student to view their marks in a convienient centralised location. The system would colate marks from My Uni, a manually uploaded speadsheet, the Computer Science web submission system ext.
 
-Things you may want to cover:
-
-* Ruby version
+* Ruby version 3.1.2
 
 * System dependencies
 
@@ -20,5 +17,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
