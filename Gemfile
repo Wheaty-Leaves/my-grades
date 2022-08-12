@@ -11,6 +11,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
+gem 'tzinfo-data'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
@@ -43,8 +44,8 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "cucumber"
-  gem "rspec"
+  gem "cucumber-rails"
+  gem "rspec-rails"
   gem "selenium-webdriver"
   gem "webdrivers"
 end
