@@ -11,7 +11,6 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
-gem 'tzinfo-data'
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
@@ -48,4 +47,5 @@ group :test do
   gem "rspec-rails"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "database_cleaner"
 end
