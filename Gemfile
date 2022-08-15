@@ -43,9 +43,9 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "cucumber"
-  gem "cucumber-rails"
-  gem "rspec"
+  gem "cucumber-rails", require: false
+  gem "rspec-rails"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'database_cleaner'
 end
