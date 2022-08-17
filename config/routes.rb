@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
+  resources :courses
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
-  # root "articles#index"
+#   root "courses#index"
   root to: "home#index"
-
-  # devise_for :teachers
-  # devise_for :students
 
   devise_for :teachers, controllers: {
     sessions: 'teachers/sessions'
@@ -14,6 +12,4 @@ Rails.application.routes.draw do
   devise_for :students, controllers: {
     sessions: 'students/sessions'
   }
-
-
 end
