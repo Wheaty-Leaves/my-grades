@@ -49,3 +49,5 @@ group :test do
   gem "webdrivers"
   gem 'database_cleaner'
 end
+
+gem 'devise'
