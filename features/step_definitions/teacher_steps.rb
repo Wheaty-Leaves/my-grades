@@ -3,7 +3,7 @@ Given(/^I, as a Teacher, with email teacher1@adelaide\.edu\.au, do not have a My
   visit("/teachers/sign_in")
 end
 
-And(/^I click Sign Up$/) do
+And(/^I click Sign Up as a teacher$/) do
   find("a[href='/teachers/sign_up']").click
 end
 
@@ -20,8 +20,4 @@ When(/^I input my details "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^
   fill_in 'teacher_email', with: arg4
   fill_in 'teacher_password', with: arg5
   fill_in 'teacher_password_confirmation', with: arg6
-end
-
-Then(/^I will click Sign Up, and will be logged in$/) do
-  click_button 'commit'
 end

@@ -22,6 +22,6 @@ When(/^I input my details "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^
   fill_in 'student_password_confirmation', with: arg6
 end
 
-Then(/^I will click Sign Up, and will be logged in as a student$/) do
+When(/^I click the Sign Up button$/) do
   click_button 'commit'
 end

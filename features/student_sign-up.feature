@@ -8,5 +8,6 @@ Feature:
     And I click Sign Up as a student
     Then I will be redirected to the Sign Up page as a student
     When I input my details "Student" "Smith" "a2345678" "student1@student.adelaide.edu.au" "Password!" "Password!" as a student
-    Then I will click Sign Up, and will be logged in as a student
+    When I click the Sign Up button
+    Then I should see the text "You have signed up successfully."
 
