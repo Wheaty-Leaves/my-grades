@@ -1,10 +1,18 @@
-<h1>Editing course</h1>
 
-<%= render "form", course: @course %>
 
-<br>
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+  <h1 class = "text-primary">Editing course</h1>
+  <div class="text-center">
 
-<div>
-  <%= link_to "Show this course", @course %> |
-  <%= link_to "Back to courses", courses_path %>
+    <%= render "form", course: @course %>
+
+    <br>
+    <div class = "btn-group" role="group">
+      <%= button_to "Show this course", @course, method: :get, :class => "m-3 btn btn-primary" %>
+      <%= button_to "Back to courses", courses_path, method: :get, :class => "m-3 btn btn-primary" %>
+    </div>
+
+  </div>
+
 </div>
+

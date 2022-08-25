@@ -1,9 +1,11 @@
-<h1>New course</h1>
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+  <h1 class = "text-primary">New course</h1>
 
-<%= render "form", course: @course %>
+  <%= render "form", course: @course %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to courses", courses_path %>
+  <div>
+    <%= button_to "Back to courses", courses_path, method: :get, :class => "m-3 btn btn-primary" %>
+  </div>
 </div>
