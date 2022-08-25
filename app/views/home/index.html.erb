@@ -1,4 +1,4 @@
-
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
   <h1>MyGrades</h1>
   <p>
     This project aims to provide a student marks system that
@@ -10,4 +10,5 @@
     with comments, extracting marks requires manual intervention and there
     are very few ways to collate marks.
   </p>
-  <%= link_to "Create Course", new_course_path %>
+  <%= button_to "Create Course", new_course_path, method: :get, :class => "m-3 btn btn-primary" %>
+</div>
