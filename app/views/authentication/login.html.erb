@@ -1,0 +1,19 @@
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+  <h1>Login Page</h1>
+
+  <%= form_with url: 'login',  action: :create, method: :post do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Next", :class => "m-3 btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>
+
+
+
+

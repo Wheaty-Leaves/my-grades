@@ -1,15 +1,26 @@
 Rails.application.routes.draw do
-  resources :courses
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
-#   root "courses#index"
   root to: "home#index"
 
-  devise_for :teachers, controllers: {
-    sessions: 'teachers/sessions'
-  }
+  devise_for :students, :teachers
 
-  devise_for :students, controllers: {
-    sessions: 'students/sessions'
+=begin
+  devise_for :students, controllers:{
+    sessions: 'students/sessions',
+    registrations: 'students/registrations'
   }
+  devise_for :teachers, controllers:{
+    sessions: 'teachers/sessions',
+    registrations: 'teachers/registrations'
+  }
+=end
+
+  resources :courses
+
+  # get the sign in page
+  get 'authentication/login', to: 'authentications#new'
+  post 'authentication/login', to: 'authentications#create'
+  get 'authentication/logout', to: 'authentications#logout'
 end

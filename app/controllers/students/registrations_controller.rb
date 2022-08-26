@@ -1,18 +1,27 @@
 # frozen_string_literal: true
 
 class Students::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: [:create]
+  #before_action :configure_account_update_params
 
   # GET /resource/sign_up
   # def new
-  #   super
+  #   @student = Student.new
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+=begin
+  def create
+    if Student.exists?(email: params[:email])
+
+      redirect_to new_student_session_path(:email => email)
+    else
+      @student = Student.new(configure_permitted_parameters)
+      redirect_to root_path
+    end
+  end
+=end
+
 
   # GET /resource/edit
   # def edit
@@ -38,7 +47,7 @@ class Students::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -47,12 +56,12 @@ class Students::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :uniID])
+  #  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
-  #   super(resource)
+  #  super(resource)
   # end
 
   # The path used after sign up for inactive accounts.

@@ -1,9 +1,10 @@
-<h2>Log in</h2>
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+<h2>Student Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false} }) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, :value => params[:email] %>
   </div>
 
   <div class="field">
@@ -24,3 +25,4 @@
 <% end %>
 
 <%= render "students/shared/links" %>
+</div>

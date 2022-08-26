@@ -1,5 +1,9 @@
 <div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
   <h1>MyGrades</h1>
+  <% if user_signed_in?  %>
+    <%= link_to "Logout", authentication_logout_path %>
+  <% end %>
+
   <p>
     This project aims to provide a student marks system that
     uses a database to manage marks that may be present to students

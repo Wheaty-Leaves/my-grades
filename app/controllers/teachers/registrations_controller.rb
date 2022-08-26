@@ -1,17 +1,28 @@
 # frozen_string_literal: true
 
 class Teachers::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params
+  before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params
+
 
   # GET /resource/sign_up
-  def new
+  #def new
   #   super
-  end
+  #end
 
   # POST /resource
   # def create
-  #   super
+  #   @teacher = Teacher.new(teacher_params)
+  #
+  #   respond_to do |format|
+  #     if @teacher.save
+  #       format.html { redirect_to root_path, notice: "Teacher was successfully created." }
+  #       format.json { render :show, status: :created, location: @voter }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @teacher.errors, status: :unprocessable_entity }
+  #     end
+  #   end
   # end
 
   # GET /resource/edit
@@ -38,7 +49,7 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -47,13 +58,17 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :uniID])
+  # end
+
+  # def teacher_params
+  #   params.require(:teacher).permit(:id,:first_name, :last_name, :uniID, :email, :password, :password_confirmation)
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  #def after_sign_up_path_for(_resource)
+  #root_path
+  #end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
