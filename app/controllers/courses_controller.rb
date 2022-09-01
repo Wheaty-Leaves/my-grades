@@ -8,6 +8,8 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
+    @course_teacher = CourseTeacher.find_by course_id: @course.id
+    @teacher = Teacher.find(@course_teacher.teacher_id)
   end
 
   # GET /courses/new
@@ -24,9 +26,15 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     respond_to do |format|
-      if @course.save
+      if @course.save # and @teacher_course.save
         format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
         format.json { render :show, status: :created, location: @course }
+
+        # Creating the joining table for courses and teachers
+        @course_id = @course.id
+        @teacher_id = current_teacher.id
+        @teacher_course = CourseTeacher.new(teacher_id: @teacher_id, course_id: @course_id)
+        @teacher_course.save
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @course.errors, status: :unprocessable_entity }
