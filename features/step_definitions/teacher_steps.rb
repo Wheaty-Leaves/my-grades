@@ -3,8 +3,9 @@ Given(/^I, as a Teacher, with email teacher1@adelaide\.edu\.au, do not have a My
   visit("/teachers/sign_in")
 end
 
-And(/^I click Sign Up as a teacher$/) do
-  find("a[href='/teachers/sign_up']").click
+Then(/^I click Sign Up as a teacher$/) do
+  #find("a[href='/teachers/sign_up']").click
+  click_button 'commit'
 end
 
 Then(/^I will be redirected to the Sign Up page$/) do
@@ -20,4 +21,24 @@ When(/^I input my details "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^
   fill_in 'teacher_email', with: arg4
   fill_in 'teacher_password', with: arg5
   fill_in 'teacher_password_confirmation', with: arg6
+end
+
+Then(/^they will be redirected to the Teacher login page$/) do
+  expect(page).to have_current_path('/teachers/sign_in?email=john.jenkins%40adelaide.edu.au')
+end
+
+Then(/^they will be redirected to the Teacher register page$/) do
+  expect(page).to have_current_path('/teachers/sign_up?email=john.jenkins%40adelaide.edu.au')
+end
+
+When(/^the teacher enters their details "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)" "([^"]*)"$/) do |arg1, arg2, arg3, arg4, arg5|
+  fill_in 'teacher[first_name]', with: arg1
+  fill_in 'teacher[last_name]', with: arg2
+  fill_in 'teacher[uniID]', with: arg3
+  fill_in 'teacher[password]', with: arg4
+  fill_in 'teacher[password_confirmation]', with: arg5
+end
+
+When(/^the teacher enters their password "([^"]*)"$/) do |arg|
+  fill_in 'teacher[password]', with: arg
 end
