@@ -6,7 +6,7 @@
     <h1>
       <%= render @course %>
     </h1>
-
+    Teacher: <%= @teacher_first_name %> <%= @teacher_last_name %>
     <div class = "btn-group" role="group">
       <%= button_to "Edit this course", edit_course_path(@course), method: :get, :class => "m-3 btn btn-primary" %>
       <%= button_to "Back to courses", courses_path, method: :get, :class => "m-3 btn btn-primary" %>

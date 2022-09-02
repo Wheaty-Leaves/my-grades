@@ -16,6 +16,7 @@
         <% @courses.each do |course| %>
           <tr>
             <%= render course %>
+
             <td><%= button_to "Show this course", course, method: :get, :class => "btn btn-primary"  %></td>
           </tr>
         <% end %>

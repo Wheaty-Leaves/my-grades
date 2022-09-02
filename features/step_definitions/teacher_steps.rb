@@ -4,7 +4,6 @@ Given(/^I, as a Teacher, with email teacher1@adelaide\.edu\.au, do not have a My
 end
 
 Then(/^I click Sign Up as a teacher$/) do
-  #find("a[href='/teachers/sign_up']").click
   click_button 'commit'
 end
 

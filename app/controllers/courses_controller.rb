@@ -10,7 +10,9 @@ class CoursesController < ApplicationController
   # GET /courses/1 or /courses/1.json
   def show
     @course_teacher = CourseTeacher.find_by course_id: @course.id
-    @teacher = Teacher.find(@course_teacher.teacher_id)
+    teacher = Teacher.find(@course_teacher.teacher_id)
+    @teacher_first_name = teacher.first_name
+    @teacher_last_name = teacher.last_name
   end
 
   # GET /courses/new

@@ -20,6 +20,7 @@ Scenario: Creating a course as a teacher
   Given I have entered class name "sample class"
   When I click the button "Create Course"
   Then I should see the text "sample class"
+  Then I should see the text "Teacher: John Jenkins"
 
 # Sad paths:
 Scenario: Creating a course as a teacher without inputting course details
