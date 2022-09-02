@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :authenticate_teacher!, only: [:new, :edit, :update, :destroy]
+  before_action :set_course, only: %i[ show ]
 
   # GET /courses or /courses.json
   def index
@@ -26,15 +27,15 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     respond_to do |format|
-      if @course.save # and @teacher_course.save
-        format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
-        format.json { render :show, status: :created, location: @course }
-
+      if @course.save
         # Creating the joining table for courses and teachers
         @course_id = @course.id
         @teacher_id = current_teacher.id
         @teacher_course = CourseTeacher.new(teacher_id: @teacher_id, course_id: @course_id)
         @teacher_course.save
+
+        format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
+        format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @course.errors, status: :unprocessable_entity }
