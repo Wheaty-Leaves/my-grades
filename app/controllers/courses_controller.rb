@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_teacher!, only: [:new, :edit, :update, :destroy]
-  before_action :set_course, only: %i[ show ]
+  before_action :authenticate_teacher!, only: %i[new edit update destroy]
+  before_action :set_course, only: %i[ show edit update destroy ]
 
   # GET /courses or /courses.json
   def index
