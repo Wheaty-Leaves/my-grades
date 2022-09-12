@@ -8,4 +8,6 @@ class Student < ApplicationRecord
   validates :last_name, presence: true
   validates :uniID, presence: true, uniqueness: true
   validates :email, uniqueness: true
+
+  has_many :grades
 end
