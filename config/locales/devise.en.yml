@@ -55,6 +55,7 @@ en:
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
   errors:
     messages:
+      invalid_email: "Invalid email, email must not contain numbers, have an @student.adelaide.edu.au for students or an @adelaide.edu.au for teachers"
       already_confirmed: "was already confirmed, please try signing in"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: "has expired, please request a new one"
