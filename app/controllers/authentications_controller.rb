@@ -101,5 +101,23 @@ class AuthenticationsController < ApplicationController
     end
   end
 
+  #parse course from Json
+
+  # if assignment exists
+  # else create
+
+  #add grade and connect to assignment
+
+=begin
+      parsed_json = JSON.parse(response.body)
+      parsed_json each do |n|
+        @assessment = Assessment.find_by id: n[:id]
+        #check if assignment exists in database
+        if @assessment != nul
+
+         else
+          @assessment = Assessment.new()
+
+=end
 
 end
