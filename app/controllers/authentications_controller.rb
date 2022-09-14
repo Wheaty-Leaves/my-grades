@@ -111,12 +111,16 @@ class AuthenticationsController < ApplicationController
 =begin
       parsed_json = JSON.parse(response.body)
       parsed_json each do |n|
-        @assessment = Assessment.find_by id: n[:id]
+        @assessment = Assessment.find_by assessment_id: n[:id]
         #check if assignment exists in database
-        if @assessment != nul
+        if @assessment == nil
+          @assessment = Assessment.new(assessment_id: n[:id])
+        @grade = @assessment.find_by student: n[:something]
+        if @grade == nil
+          @grade = Grade.new(something)
 
-         else
-          @assessment = Assessment.new()
+        #save
+
 
 =end
 
