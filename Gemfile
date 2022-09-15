@@ -14,7 +14,8 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "bootstrap"
-
+gem 'nested_scaffold'
+gem 'jquery-rails', '~> 4.4'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

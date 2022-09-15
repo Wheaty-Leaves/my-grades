@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :enrolment do
+    
+  end
+
 
   factory :student do
     id { Faker::Number.number(digits: 7) }

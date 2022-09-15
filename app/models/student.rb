@@ -4,6 +4,9 @@ class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :enrolments
+  has_many :courses, through: :enrolments
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :uniID, presence: true, uniqueness: true
