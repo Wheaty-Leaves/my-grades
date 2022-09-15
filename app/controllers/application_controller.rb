@@ -37,6 +37,44 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+
+    #for each course in json
+    courses.each do |c|
+      if c["enrollment_term_id"] == eti
+        # Print course name
+        puts "name: #{c["name"]}"
+
+        #check course is in database
+        if not Course.exists?(name: c["name"])
+          #doesnt exist
+          @course = Course.new(name: c["name"])
+        end
+
+        # get assignmnets for the course
+        res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{c["id"]}/assignments?per_page=40", {:Authorization => "Bearer #{access_token}"}
+        assignments = JSON.parse(res.body)
+
+        #get submissions
+        res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{c["id"]}/students/submissions?per_page=40", {:Authorization => "Bearer #{access_token}"}
+        submissions = JSON.parse(res.body)
+
+        #for each assignment in json, do work on submission
+        assignments.each_with_index do |a|
+          print "    #{a["name"]}, "
+
+          #check assessment is in database
+          if not Assessment.exists?(name: a["name"])
+            #doesnt exist
+            @assessment = Assessment.new(name: a["name"])
+          end
+
+          # get submission grade
+          pos = submissions.find_index {|e| e["assignment_id"] == a["id"]}
+          print "grade: #{submissions[pos]["score"]}/#{a["points_possible"]}"
+          puts
+        end
+      end
+    end
 =begin
     courses.to_json
 

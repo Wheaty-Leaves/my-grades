@@ -14,7 +14,8 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "bootstrap"
-gem 'rest-client', '~> 1.8'
+gem 'rest-client' #, '~>1.8'
+#gem 'mime-types'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
