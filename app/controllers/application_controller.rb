@@ -48,6 +48,8 @@ class ApplicationController < ActionController::Base
         if not Course.exists?(name: c["name"])
           #doesnt exist
           @course = Course.new(name: c["name"])
+        else
+          @course = Course.find_by name: c["name"]
         end
 
         # get assignmnets for the course
@@ -66,11 +68,16 @@ class ApplicationController < ActionController::Base
           if not Assessment.exists?(name: a["name"])
             #doesnt exist
             @assessment = Assessment.new(name: a["name"])
+          else
+            @assessment = Assessment.find_by name: a["name"]
           end
 
           # get submission grade
           pos = submissions.find_index {|e| e["assignment_id"] == a["id"]}
           print "grade: #{submissions[pos]["score"]}/#{a["points_possible"]}"
+          score = submissions[pos]["score"]/a["points_possible"]
+          student = Student.find_by uniID: studentId
+          @grade = Grade.new(student: student, assessment: @assessment, name: a["name"], score: score)
           puts
         end
       end
