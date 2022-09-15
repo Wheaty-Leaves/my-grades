@@ -100,7 +100,7 @@ class AuthenticationsController < ApplicationController
       return nil
     end
   end
-
+=begin
   #parse course from Json
 
   # if assignment exists
@@ -108,20 +108,46 @@ class AuthenticationsController < ApplicationController
 
   #add grade and connect to assignment
 
+  def json_to_database
+    #convert to ruby array
+    @courses_json = JSON.parse(response.body)
+    @assignments_json = JSON.parse(response.body)
+    @submission_json = JSON.parse(response.body)
+
+    @courses_json.each do |c|
+      if c["enrollment_term_id"] == eti
+        # Print course name
+        puts "name: #{c["name"]}"
+        # get assignmnets for the course
+        res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{c["id"]}/assignments?per_page=40", {:Authorization => "Bearer #{access_token}"}
+        assignments = JSON.parse(res.body)
+        res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{c["id"]}/students/submissions?per_page=40", {:Authorization => "Bearer #{access_token}"}
+        submissions = JSON.parse(res.body)
+        assignments.each_with_index do |a|
+          print "    #{a["name"]}, "
+          # get submission grade
+          pos = submissions.find_index {|e| e["assignment_id"] == a["id"]}
+          print "grade: #{submissions[pos]["score"]}/#{a["points_possible"]}"
+          puts
+        end
+      end
+    end
 =begin
-      parsed_json = JSON.parse(response.body)
-      parsed_json each do |n|
-        @assessment = Assessment.find_by assessment_id: n[:id]
-        #check if assignment exists in database
-        if @assessment == nil
-          @assessment = Assessment.new(assessment_id: n[:id])
-        @grade = @assessment.find_by student: n[:something]
-        if @grade == nil
-          @grade = Grade.new(something)
+    #for each course
+    @courses_json.each do |n|
+      @assessment = Assessment.find_by assessment_id: n[:id]
+      #check if assignment exists in database
+      if @assessment == nil
+        @assessment = Assessment.new(assessment_id: n[:id])
+      end
+
+      @grade = @assessment.find_by student: n[:something]
+      if @grade == nil
+        @grade = Grade.new(something)
+      end
 
         #save
 
-
+    end
 =end
-
-end
+  end
