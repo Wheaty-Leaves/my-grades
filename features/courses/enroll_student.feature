@@ -9,7 +9,15 @@ Feature:
   Background:
     Given I am logged in as a teacher
     And there exists a student with first_name: "Jerry", last_name: "Smith", and student_id: "a1766887"
+    And I am on the home page
+    When I click the button "Create Course"
+    Then I should see the text "sample class"
+    Then I should see the text "Teacher: John Jenkins"
 
 #  Happy
   Scenario:
-    Given I am on the home page
+    Given I click the button "View Students"
+    And I click the button "Add Students"
+    When I click the button "Add"
+    Then I should see the text "Added"
+

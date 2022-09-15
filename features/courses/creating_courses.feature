@@ -36,7 +36,7 @@ Scenario: I attempt to create a course while not signed in
 Scenario: I attempt to create a course while signed in a student
   Given I am on the home page
   When I click the link "Logout"
-  And they enter their email "jane.jenkins@student.adelaide.edu.au"
+  And I enter my email "jane.jenkins@student.adelaide.edu.au"
   And I click the button "Next"
   And I enter my student details "Jane" "Jenkins" "a1111111" "P@ssword1"
   And I click the button "Sign up"
