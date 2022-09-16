@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
           pos = submissions.find_index {|e| e["assignment_id"] == a["id"]}
           print "grade: #{submissions[pos]["score"]}/#{a["points_possible"]}"
           score = submissions[pos]["score"]/a["points_possible"]
-          student = Student.find_by uniID: studentId
+          student = Student.find_by uniID: current_user.uniID
           @grade = Grade.new(student: student, assessment: @assessment, name: a["name"], score: score)
           puts
         end
