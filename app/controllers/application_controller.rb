@@ -13,10 +13,11 @@ class ApplicationController < ActionController::Base
 
   def json_to_database
 
-    # CHANGE TO GET FROM USER
-    access_token = "7036~1Zqk4k0rh1nxLirHTdH8Vbrw55twnvPp0MNBh2954EtITlQAU80JQPeniKXFK7tm"
-
-    res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{access_token}"}
+    #retrieve data form access toke, as of branch (json_to_database_converter) access_token not implemneted
+    res = nil
+    if current_user.access_token != nil
+      res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{current_user.access_token}"}
+    end
     data = JSON.parse(res.body)
 
     # gets the date of today
