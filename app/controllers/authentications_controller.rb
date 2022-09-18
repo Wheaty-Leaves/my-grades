@@ -37,7 +37,8 @@ class AuthenticationsController < ApplicationController
         end
       end
     else
-      flash[:alert] = "invalid email address"
+      puts "invalid email address"
+      flash.alert = "Invalid email, email must not contain numbers, have an @student.adelaide.edu.au for students or an @adelaide.edu.au for teachers"
     end
   end
 
