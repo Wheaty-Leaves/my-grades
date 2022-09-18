@@ -1,9 +1,4 @@
 FactoryBot.define do
-  factory :enrolment do
-    
-  end
-
-
   factory :student do
     id { Faker::Number.number(digits: 7) }
     first_name { Faker::Name.first_name }
@@ -25,5 +20,10 @@ FactoryBot.define do
     password {"Password1"}
     created_at { Faker::Date.backward(days: 14) }
   end
+
+  factory :course do
+    name { Faker::Name.name }
+  end
+
 
 end

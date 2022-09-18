@@ -31,3 +31,13 @@ Given(/^there is a student with email "([^"]*)" and password "([^"]*)"$/) do |ar
     password: arg2)
   student.save
 end
+
+And(/^there exists a student with first_name: "([^"]*)", last_name: "([^"]*)", and student_id: "([^"]*)"$/) do |arg1, arg2, arg3|
+  student = Student.new(
+    first_name: arg1,
+    last_name: arg2,
+    email: "sample.name@student.adelaide.edu.au",
+    uniID: arg3,
+    password: "bad_password")
+  student.save
+end

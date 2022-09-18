@@ -8,16 +8,15 @@ Feature:
 
   Background:
     Given I am logged in as a teacher
-    And there exists a student with first_name: "Jerry", last_name: "Smith", and student_id: "a1766887"
     And I am on the home page
     When I click the button "Create Course"
-    Then I should see the text "sample class"
-    Then I should see the text "Teacher: John Jenkins"
+    Given I have entered class name "sample class"
+    When I click the button "Create Course"
 
-#  Happy
+#  Happy Path
   Scenario:
-    Given I click the button "View Students"
-    And I click the button "Add Students"
-    When I click the button "Add"
-    Then I should see the text "Added"
-
+    Given there exists a student with first_name: "A", last_name: "A", and student_id: "a1111111"
+    And I click the button "View students"
+    And I click the link "New enrolment"
+    When I click the button "Create Enrolment"
+    Then I should see the text "a1111111"

@@ -22,6 +22,7 @@ When(/^I enter my teacher password: "([^"]*)"$/) do |arg|
   fill_in 'teacher[password]', with: arg
 end
 
+
 Given(/^there is a teacher with email "([^"]*)" and password "([^"]*)"$/) do |arg1, arg2|
   teacher = Teacher.new(
     first_name: "Will",
@@ -30,4 +31,19 @@ Given(/^there is a teacher with email "([^"]*)" and password "([^"]*)"$/) do |ar
     uniID: "a1766887",
     password: arg2)
   teacher.save
+end
+
+Given(/^I am logged in as a teacher$/) do
+  teacher = Teacher.new(
+    first_name: "Will",
+    last_name: "Smith",
+    email: "will.smith@adelaide.edu.au",
+    uniID: "a1766887",
+    password: "bad_password")
+  teacher.save
+  visit root_path
+  fill_in 'email', with: "will.smith@adelaide.edu.au"
+  click_button("Next")
+  fill_in 'teacher[password]', with: "bad_password"
+  click_button("Log in")
 end

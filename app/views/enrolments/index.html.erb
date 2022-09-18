@@ -9,7 +9,9 @@
   <table class=" table table-striped container table-light" style = "border-radius: 6px; overflow: hidden;">
     <thead class="thead-dark">
         <tr>
-          <th class = "text-primary fs-4">Name</th>
+          <th class = "text-primary fs-4">Student ID</th>
+          <th class = "text-primary fs-4">First Name</th>
+          <th class = "text-primary fs-4">Last Name</th>
           <th class = "text-primary fs-4">Actions</th>
         </tr>
     </thead>
@@ -17,12 +19,8 @@
     <tbody>
       <% @enrolments.each do |enrolment| %>
         <tr>
-            <td>
               <%= render enrolment %>
-            </td>
-            <td>
-              <%= button_to 'Destroy', course_enrolment_path(@course, enrolment), data: {:confirm => 'Are you sure?'}, :method => :delete %>
-            </td>
+              <td><%= button_to 'Destroy', course_enrolment_path(@course, enrolment), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
         </tr>
       <% end %>
     </tbody>

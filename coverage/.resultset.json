@@ -522,6 +522,16 @@
       "/Users/Max/Desktop/ESaaS2-2022-Group3/spec/factories.rb": {
         "lines": [
           1,
+          1,
+          11,
+          11,
+          11,
+          1,
+          11,
+          11,
+          11,
+          11,
+          null,
           null,
           1,
           8,
@@ -535,14 +545,8 @@
           null,
           null,
           1,
-          8,
-          8,
-          8,
           1,
-          8,
-          8,
-          8,
-          8,
+          null,
           null,
           null,
           null
@@ -552,6 +556,10 @@
         "lines": [
           1,
           null,
+          1,
+          1,
+          null,
+          null,
           null,
           null,
           1,
@@ -567,9 +575,6 @@
           null,
           null,
           null,
-          null,
-          null,
-          1,
           null,
           null,
           1,
@@ -585,6 +590,9 @@
           null,
           1,
           null,
+          null,
+          1,
+          1,
           null,
           1,
           1,
@@ -644,6 +652,12 @@
           null
         ]
       },
+      "/Users/Max/Desktop/ESaaS2-2022-Group3/app/helpers/enrolments_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
       "/Users/Max/Desktop/ESaaS2-2022-Group3/app/helpers/home_helper.rb": {
         "lines": [
           1,
@@ -685,18 +699,21 @@
           null,
           null,
           1,
-          22,
-          22,
+          25,
+          25,
           null,
           null,
           1,
-          22,
+          25,
           null,
           null
         ]
       },
       "/Users/Max/Desktop/ESaaS2-2022-Group3/app/models/course.rb": {
         "lines": [
+          1,
+          1,
+          null,
           1,
           1,
           null,
@@ -783,6 +800,62 @@
           null
         ]
       },
+      "/Users/Max/Desktop/ESaaS2-2022-Group3/spec/models/enrolment_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/Max/Desktop/ESaaS2-2022-Group3/app/models/enrolment.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
       "/Users/Max/Desktop/ESaaS2-2022-Group3/spec/models/student_spec.rb": {
         "lines": [
           1,
@@ -832,7 +905,6 @@
           1,
           null,
           1,
-          null,
           1,
           5,
           null,
@@ -978,6 +1050,6 @@
         ]
       }
     },
-    "timestamp": 1662260367
+    "timestamp": 1663485781
   }
 }
