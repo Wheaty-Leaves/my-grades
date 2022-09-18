@@ -14,7 +14,8 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "bootstrap"
-
+gem 'nested_scaffold'
+gem 'jquery-rails', '~> 4.4'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -29,6 +30,7 @@ end
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rubocop'
   gem "sqlite3", "~> 1.4"
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
