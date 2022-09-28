@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :courses do
+    resources :enrolments, only: %i[ new index create destroy ]
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   root to: "home#index"
@@ -16,9 +20,6 @@ Rails.application.routes.draw do
     registrations: 'teachers/registrations'
   }
 =end
-
-  resources :courses
-
   # get the sign in page
   get 'authentication/login', to: 'authentications#new'
   post 'authentication/login', to: 'authentications#create'
