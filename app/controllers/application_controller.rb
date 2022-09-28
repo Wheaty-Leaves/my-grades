@@ -14,10 +14,13 @@ class ApplicationController < ActionController::Base
   def json_to_database
 
     #retrieve data form access toke, as of branch (json_to_database_converter) access_token not implemneted
-    res = nil
-    if current_user.access_token != nil
-      res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{current_user.access_token}"}
-    end
+    # res = nil
+    # if current_user.access_token != nil
+    #   res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{current_user.access_token}"}
+    # end
+    accessToken = "7036~uLKlaHVzBdzI18g3MpxQdlrmEVfvRnYYY4AjSOdJithpWP3a5JwK2FZKqHURDvII"
+    res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{accessToken}"}
+
     data = JSON.parse(res.body)
 
     # gets the date of today
@@ -78,11 +81,16 @@ class ApplicationController < ActionController::Base
           print "grade: #{submissions[pos]["score"]}/#{a["points_possible"]}"
           score = submissions[pos]["score"]
           student = Student.find_by uniID: current_user.uniID
-          @grade = Grade.new(student: student, assessment: assessment, name: a["name"], score: score)
-          puts
+
+          #check if grade is in database already
+          unless Grade.exists?(student: student, assessment: a["assignment_id"])
+            #doesnt exist
+            @grade = Grade.new(student: student, assessment: assessment, name: a["name"], score: score)
+          end
+
         end
       end
-    end
+    end #end of each course
 =begin
     courses.to_json
 
@@ -110,7 +118,6 @@ class ApplicationController < ActionController::Base
     end
 =end
 
-  end
+  end # end of json_to_database
 
-
-end
+end#end of class
