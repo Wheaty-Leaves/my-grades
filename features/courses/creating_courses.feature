@@ -5,13 +5,13 @@ Feature:
   and easily mark my students.
 
 Background: I am on the create course page
-  Given a User is not logged in
-  When they enter their email "john.jenkins@adelaide.edu.au"
-  And click next
-  Then they will be redirected to the Teacher register page
-  When the teacher enters their details "John" "Jenkins" "a1111111" "P@ssword1" "P@ssword1"
-  And click register
-  Then they should be redirected to the home page
+  Given I am on the home page
+  When I enter my email "john.jenkins@adelaide.edu.au"
+  And I click the button "Next"
+  Then I will be redirected to the Teacher register page
+  When I enter my teacher details "John" "Jenkins" "a1111111" "P@ssword1"
+  And I click the button "Sign up"
+  Then I should be redirected to the home page
   When I click the button "Create Course"
   Then I should see the text "New course"
 
@@ -36,9 +36,9 @@ Scenario: I attempt to create a course while not signed in
 Scenario: I attempt to create a course while signed in a student
   Given I am on the home page
   When I click the link "Logout"
-  And they enter their email "jane.jenkins@student.adelaide.edu.au"
+  And I enter my email "jane.jenkins@student.adelaide.edu.au"
   And I click the button "Next"
-  And the student enters their details "Jane" "Jenkins" "a1111111" "P@ssword1" "P@ssword1"
+  And I enter my student details "Jane" "Jenkins" "a1111111" "P@ssword1"
   And I click the button "Sign up"
   And I go to the create courses page
   Then I should see the text "You need to sign in or sign up before continuing."

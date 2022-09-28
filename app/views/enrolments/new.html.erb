@@ -1,0 +1,5 @@
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+  <h1 class="text-primary">New enrolment</h1>
+  <%= render "form", enrolment: @enrolment %>
+  <br><%= link_to "Back", course_enrolments_path(@course) %>
+</div>
