@@ -14,6 +14,9 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "bootstrap"
+
+gem 'rest-client'
+#gem 'mime-types'
 gem 'nested_scaffold'
 gem 'jquery-rails', '~> 4.4'
 
