@@ -10,6 +10,7 @@
     <div class = "btn-group" role="group">
       <%= button_to "Edit this course", edit_course_path(@course), method: :get, :class => "m-3 btn btn-primary" %>
       <%= button_to "View students", course_enrolments_path(@course), method: :get, :class => "m-3 btn btn-primary" %>
+      <%= button_to "Grades", courses_path, :class => "m-3 btn btn-primary" %>
       <%= button_to "Back to courses", courses_path, method: :get, :class => "m-3 btn btn-primary" %>
     </div>
     <div>
