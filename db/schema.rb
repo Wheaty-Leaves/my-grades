@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_04_233305) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_053834) do
   create_table "assessments", force: :cascade do |t|
     t.string "name"
     t.integer "max_score"
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_233305) do
     t.integer "canvas_student_id"
     t.integer "canvas_id"
     t.integer "canvas_assignment_id"
+    t.string "graded_at"
     t.index ["assessment_id"], name: "index_grades_on_assessment_id"
     t.index ["student_id"], name: "index_grades_on_student_id"
   end
@@ -74,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_233305) do
     t.string "uniID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "access_token"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
