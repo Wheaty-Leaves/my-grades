@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action -> { flash.discard }
-
+  helper_method :json_to_database
 
 
   def configure_permitted_parameters
@@ -14,13 +14,12 @@ class ApplicationController < ActionController::Base
   def json_to_database
 
     #retrieve data form access toke, as of branch (json_to_database_converter) access_token not implemneted
-    # res = nil
-    # if current_user.access_token != nil
-    #   res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{current_user.access_token}"}
-    # end
-    accessToken = "7036~uLKlaHVzBdzI18g3MpxQdlrmEVfvRnYYY4AjSOdJithpWP3a5JwK2FZKqHURDvII"
-    res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{accessToken}"}
-
+    res = nil
+    access_token = "7036~1Zqk4k0rh1nxLirHTdH8Vbrw55twnvPp0MNBh2954EtITlQAU80JQPeniKXFK7tm"
+    if access_token != nil
+      res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{access_token}"}
+      puts "courses request sent"
+    end
     data = JSON.parse(res.body)
 
     # gets the date of today
@@ -49,11 +48,11 @@ class ApplicationController < ActionController::Base
         puts "name: #{c["name"]}"
 
         #check course is in database
-        if not Course.exists?(name: c["name"])
+        if not Course.exists?(course_id: c["id"])
           #doesnt exist
-          course = Course.new(name: c["name"])
+          course = Course.new(name: c["name"], canvas_id: c["id"])
         else
-          course = Course.find_by name: c["name"]
+          course = Course.find_by(course_id: c["id"])
         end
 
         # get assignmnets for the course
@@ -81,16 +80,11 @@ class ApplicationController < ActionController::Base
           print "grade: #{submissions[pos]["score"]}/#{a["points_possible"]}"
           score = submissions[pos]["score"]
           student = Student.find_by uniID: current_user.uniID
-
-          #check if grade is in database already
-          unless Grade.exists?(student: student, assessment: a["assignment_id"])
-            #doesnt exist
-            @grade = Grade.new(student: student, assessment: assessment, name: a["name"], score: score)
-          end
-
+          @grade = Grade.new(student: student, assessment: assessment, name: a["name"], score: score)
+          puts
         end
       end
-    end #end of each course
+    end
 =begin
     courses.to_json
 
@@ -118,6 +112,5 @@ class ApplicationController < ActionController::Base
     end
 =end
 
-  end # end of json_to_database
-
-end#end of class
+  end
+end

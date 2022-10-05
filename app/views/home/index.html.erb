@@ -3,6 +3,8 @@
 
   <%= @teacher %>
 
+  <% json_to_database %>
+
   <p>
     This project aims to provide a student marks system that
     uses a database to manage marks that may be present to students
@@ -14,6 +16,5 @@
     are very few ways to collate marks.
   </p>
   <%= button_to "Create Course", new_course_path, method: :get, :class => "mt-3 btn btn-primary" %>
-
-  <%=json_to_database %>
+  <% json_to_database %>
 </div>
