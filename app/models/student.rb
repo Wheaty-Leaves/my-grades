@@ -11,6 +11,6 @@ class Student < ApplicationRecord
   validates :last_name, presence: true
   validates :uniID, presence: true, uniqueness: true
   validates :email, uniqueness: true
-
+  validates :access_token, presence: true, uniqueness: true
   has_many :grades
 end

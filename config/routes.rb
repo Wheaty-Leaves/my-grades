@@ -12,17 +12,20 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "home#index"
 
-  devise_for :students, :teachers
+  devise_for :teachers
 
-=begin
+
   devise_for :students, controllers:{
-    sessions: 'students/sessions',
     registrations: 'students/registrations'
   }
+
+=begin
+
   devise_for :teachers, controllers:{
     sessions: 'teachers/sessions',
     registrations: 'teachers/registrations'
   }
+
 =end
   # get the sign in page
   get 'authentication/login', to: 'authentications#new'
