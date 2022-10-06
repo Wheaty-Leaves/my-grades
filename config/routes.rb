@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :courses do
-    resources :enrolments, only: %i[ new index create destroy ]
+    resources :enrolments, only: %i[ new index create destroy ] do
+      resources :grades, only: %i[ new index create destroy ]
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
