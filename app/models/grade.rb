@@ -1,3 +1,3 @@
 class Grade < ApplicationRecord
-  belongs_to :assessments
+  belongs_to :assessment
 end
