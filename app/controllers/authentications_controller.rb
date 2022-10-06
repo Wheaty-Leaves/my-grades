@@ -58,7 +58,6 @@ class AuthenticationsController < ApplicationController
     end
   end
 
-  protected
   def resource_name
     if @email == "student"
       :student

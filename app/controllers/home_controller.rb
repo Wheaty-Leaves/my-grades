@@ -5,7 +5,6 @@ class HomeController < ApplicationController
   # function to determine whether teacher or student is attempting to signup/login
 
   def index
-    @teacher = current_user.first_name
     render "index"
   end
 
