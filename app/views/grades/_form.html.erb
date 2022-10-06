@@ -11,7 +11,12 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.label :score %> <br />
+    <%= form.text_field :first_name, autofocus: true %>
+  </div>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Submit Grade", :class => "mt-3 btn btn-primary"%>
   </div>
 <% end %>

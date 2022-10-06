@@ -32,13 +32,8 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <% if user_signed_in?  %>
-            <%= link_to "View All Courses", courses_path(@course_teacher), :class => "m-2 btn btn-primary" %>
-            <% if student_signed_in? %>
-              <%= link_to "My Courses", courses_path(@enrolments), :class => "m-2 btn btn-primary" %>
-            <% end %>
-            <% if teacher_signed_in? %>
-              <%= link_to "My Courses", courses_path, :class => "m-2 btn btn-primary" %>
-            <% end %>
+            <%= link_to "View All Courses", courses_path, :class => "m-2 btn btn-primary" %>
+            <%= link_to "My Courses", courses_path, :class => "m-2 btn btn-primary" %>
             <%= link_to "Logout", authentication_logout_path, :class => "m-2 btn btn-primary" %>
           <% end %>
         </li>

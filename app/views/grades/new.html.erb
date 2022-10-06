@@ -1,9 +1,8 @@
-<h1>New grade</h1>
-
-<%= render "form", grade: @grade %>
-
-<br>
-
-<div>
-  <%= link_to "Back to grades", course_enrolment_grades_path %>
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+  <h1>New grade</h1>
+  <%= render "form", grade: @grade %>
+  <br>
+  <div>
+    <%= link_to "Back to grades", course_enrolment_grades_path %>
+  </div>
 </div>
