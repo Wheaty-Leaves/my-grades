@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     puts "Running API calls!"
     # check if student or teacher is logged in
     puts "#{current_user}"
-    if current_user :student
+    if current_user :student and (((DateTime.now - current_user.last_canvas_request) * 24 * 60).to_i  > 19 or current_user.last_canvas_request == null)
       puts "student"
       #---do the API calls---
       # retrieve data form access toke, as of branch (json_to_database_converter) access_token not implemented
@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
       data = JSON.parse(res.body)
       # gets the date of today
       now = Date.today
+      current_user.last_canvas_request = DateTime.now
       # sets the time period to a year before
       period = (now - 365)
       # enrollment term id
