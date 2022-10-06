@@ -1,4 +1,4 @@
-<%= form_with(model: @grade, url: new_course_enrolment_grade_path) do |form| %>
+<%= form_with(model: @grade, url: new_course_enrolment_assessment_grade_path) do |form| %>
   <% if grade.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
