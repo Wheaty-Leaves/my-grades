@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
     puts "Running API calls!"
     # check if student or teacher is logged in
     puts "#{current_user}"
-
     if student_signed_in?
       if current_user.last_canvas_request == nil or ((DateTime.now - current_user.last_canvas_request) * 24 * 60).to_i  > 19
         puts "student"
@@ -23,13 +22,14 @@ class ApplicationController < ActionController::Base
         # retrieve data form access toke, as of branch (json_to_database_converter) access_token not implemented
         # set the response body to nil
         res = nil
-        # will change this to access_token = current_user.access_token
-        # Chris' access token
-        #access_token = "7036~1Zqk4k0rh1nxLirHTdH8Vbrw55twnvPp0MNBh2954EtITlQAU80JQPeniKXFK7tm"
         #---
         access_token = current_user.access_token
         #---
-        res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{access_token}"}
+        puts "#{access_token}"
+        if (res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses?per_page=50", {:Authorization => "Bearer #{access_token}"}).code == 401
+          @unauth = true
+        end
+
         puts "courses request sent"
         data = JSON.parse(res.body)
         # gets the date of today

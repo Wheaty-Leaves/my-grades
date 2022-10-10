@@ -33,7 +33,7 @@
         <li class="nav-item">
           <% if user_signed_in?  %>
             <%= link_to "View All Courses", courses_path, :class => "m-2 btn btn-primary" %>
-            <%= link_to "My Courses", courses_path, :class => "m-2 btn btn-primary" %>
+            <%= link_to "My Courses", my_courses_path, :class => "m-2 btn btn-primary" %>
             <%= link_to "Logout", authentication_logout_path, :class => "m-2 btn btn-primary" %>
           <% end %>
         </li>

@@ -7,8 +7,9 @@ Rails.application.routes.draw do
       end
     end
   end
-
   post 'courses/:id', to: 'courses#claim_course'
+  get 'my_courses', to: 'courses#my_courses'
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
@@ -33,4 +34,5 @@ Rails.application.routes.draw do
   get 'authentication/login', to: 'authentications#new'
   post 'authentication/login', to: 'authentications#create'
   get 'authentication/logout', to: 'authentications#logout'
+
 end
