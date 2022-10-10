@@ -18,6 +18,10 @@
             <%= render course %>
             <td><%= button_to "Show this course", course,
                               method: :get, :class => "btn btn-primary" %></td>
+            <% if @teacher_id == nil %>
+              <td><%= button_to "Claim this course", course,
+                              method: :post, :class => "btn btn-primary" %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

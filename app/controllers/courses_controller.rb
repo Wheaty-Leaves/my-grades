@@ -15,6 +15,13 @@ class CoursesController < ApplicationController
     @teacher_last_name = teacher.last_name
   end
 
+  def claim_course
+    @teacher_id = current_teacher.id
+    CourseTeacher.create(teacher_id: @teacher_id, course_id: @course_id)
+
+    redirect_back(fallback_location: root_path)
+  end
+
   # GET /courses/new
   def new
     @course = Course.new
