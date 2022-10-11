@@ -52,7 +52,7 @@ class AssessmentsController < ApplicationController
     @assessment.destroy
 
     respond_to do |format|
-      format.html { redirect_to assessments_url, notice: "Assessment was successfully destroyed." }
+      format.html { redirect_to course_assessments_url(@course), notice: "Assessment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
