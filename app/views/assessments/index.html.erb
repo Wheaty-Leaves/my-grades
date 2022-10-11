@@ -17,7 +17,7 @@
       </thead>
 
       <tbody>
-      <% @assessments.each do |assessment| %>
+      <% @assessments.where(course_id: @course.id).each do |assessment| %>
         <tr>
           <%= render assessment %>
           <td><%= button_to 'Destroy', course_assessment_path(@course, assessment), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
