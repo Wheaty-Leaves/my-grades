@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
               if not Assessment.exists?(canvas_id: a["id"])
                 #doesnt exist
                 puts "Creating Assessment: Assessment.new(canvas_id: #{a["id"]}, name: #{a["name"]}, max_score: #{a["points_possible"]}, due_date: #{a["due_at"]}, release_date: #{a["unlock_at"]}, canvas_course_id: #{a["course_id"]})"
-                assessment = Assessment.create(course_id: course.id,canvas_id: a["id"], name: a["name"], max_score: a["points_possible"], due_date: a["due_at"], release_date: a["unlock_at"], canvas_course_id: a["course_id"])
+                assessment = Assessment.create(course_id: course.id,canvas_id: a["id"], name: a["name"], max_score: a["points_possible"].to_f, due_date: a["due_at"], release_date: a["unlock_at"], canvas_course_id: a["course_id"])
               else
                 puts "Found #{a["name"]}"
                 assessment = Assessment.find_by(canvas_id: a["id"])

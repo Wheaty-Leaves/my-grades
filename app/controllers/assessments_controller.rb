@@ -9,6 +9,7 @@ class AssessmentsController < ApplicationController
 
   # GET /assessments/1 or /assessments/1.json
   def show
+    @grades = Grade.where(assessment_id: @assessment.id, student_id: current_user.id)
   end
 
   # GET /assessments/new

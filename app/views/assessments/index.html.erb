@@ -20,6 +20,7 @@
       <% @assessments.where(course_id: @course.id).each do |assessment| %>
         <tr>
           <%= render assessment %>
+          <td><%= button_to "Show Grades", assessment_path(assessment), method: :get, :class => "m-3 btn btn-primary" %></td>
           <td><%= button_to 'Destroy', course_assessment_path(@course, assessment), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
         </tr>
       <% end %>

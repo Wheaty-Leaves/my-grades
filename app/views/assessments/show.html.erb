@@ -1,5 +1,39 @@
 <p style="color: green"><%= notice %></p>
 
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+
+
+  <h1 class="text-primary">Grades</h1>
+
+  <div id="enrolments">
+    <table class=" table table-striped container table-light" style = "border-radius: 6px; overflow: hidden;">
+      <thead class="thead-dark">
+      <tr>
+        <th class = "text-primary fs-4">Score</th>
+        <th class = "text-primary fs-4">Created At</th>
+        <th class = "text-primary fs-4">Graded At</th>
+        <th class = "text-primary fs-4">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @grades.each do |grade| %>
+        <tr>
+          <%= render grade %>
+          <td></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+
+</div>
+
+
+<p style="color: green"><%= notice %></p>
+
 <%= render @assessment %>
 
 <div>
