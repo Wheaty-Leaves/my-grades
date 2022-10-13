@@ -5,9 +5,35 @@ class CoursesController < ApplicationController
   # GET /courses or /courses.json
   def index
     @courses = Course.all
-    # if student_signed_in?
-    #   @courses = Course.where(assessment_id: @assessment.id, student_id: current_user.id)
-    # end
+    c = Course.all
+    puts "value of Course.all #{c.length}"
+    @teachers = Array.new(@courses.length,nil)
+    @courses.each_with_index do |c, i|
+      temp = CourseTeacher.find_by course_id: c.id
+      if temp != nil
+        @teachers[i] = temp
+      else
+        #leave nil
+      end
+    end
+  end
+
+  # GET /courses/my_courses
+  def my_courses
+    if teacher_signed_in?
+      teacher_courses = CourseTeacher.all.where teacher_id: current_user.id
+      @courses = Array.new(teacher_courses.length,nil)
+      teacher_courses.each_with_index do |c,i|
+        @courses[i] = Course.find_by id: c.course_id
+      end
+    elsif student_signed_in?
+      student_courses = Enrolment.all.where student_id: current_user.id
+      @courses = Array.new(student_courses.length,nil)
+      student_courses.each_with_index do |c,i|
+        @courses[i] = Course.find_by id: c.course_id
+      end
+    end
+    render 'courses/my_courses'
   end
 
   # GET /courses/1 or /courses/1.json
@@ -20,6 +46,11 @@ class CoursesController < ApplicationController
         @teacher_last_name = teacher.last_name
       end
     end
+  end
+
+  def claim_course
+    CourseTeacher.create(teacher_id: current_teacher.id, course_id: params[:id])
+    redirect_back(fallback_location: root_path)
   end
 
   # GET /courses/new

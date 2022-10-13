@@ -10,18 +10,14 @@ class Students::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-=begin
   def create
-    if Student.exists?(email: params[:email])
-
-      redirect_to new_student_session_path(:email => email)
-    else
-      @student = Student.new(configure_permitted_parameters)
-      redirect_to root_path
-    end
+    # puts "#{params[:student][:access_token]}"
+    # temp = BCrypt::Password.create(params[:student][:access_token])
+    # puts "#{temp}"
+    # params[:student][:access_token] = temp
+    # puts "#{params[:student][:access_token]}"
+    super
   end
-=end
-
 
   # GET /resource/edit
   # def edit

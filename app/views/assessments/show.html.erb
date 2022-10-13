@@ -2,6 +2,11 @@
 
 <div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
 
+
+<div>
+  <%= link_to "Edit this assessment", edit_assessment_path(@assessment) %> |
+  <%= link_to "Back to assessments", course_enrolment_assessments_path %>
+
   <h1 class="text-primary">Grades for <%= @assessment.name %></h1>
 
   <div id="enrolments">
@@ -31,6 +36,7 @@
     <%= button_to "Back to assessments", course_assessments_path(@assessment.course_id), method: :get, :class => "mr-2 btn btn-primary" %>
 
   </div>
+
 
 </div>
 

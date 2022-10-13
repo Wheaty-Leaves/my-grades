@@ -22,9 +22,6 @@ class ApplicationController < ActionController::Base
         # retrieve data form access toke, as of branch (json_to_database_converter) access_token not implemented
         # set the response body to nil
         res = nil
-        # will change this to access_token = current_user.access_token
-        # Chris' access token
-        #access_token = "7036~1Zqk4k0rh1nxLirHTdH8Vbrw55twnvPp0MNBh2954EtITlQAU80JQPeniKXFK7tm"
         #---
         access_token = current_user.access_token
         #---
@@ -57,7 +54,6 @@ class ApplicationController < ActionController::Base
         courses.each do |c|
           if c["enrollment_term_id"] == eti
             # Print course name
-
             #check course is in database
             if not Course.exists?(canvas_id: c["id"])
               #doesnt exist
@@ -67,7 +63,6 @@ class ApplicationController < ActionController::Base
               puts "Course found: #{c["name"]}"
               course = Course.find_by(canvas_id: c["id"])
             end
-
             # get assignmnets for the course
             res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{course.canvas_id}/assignments?per_page=40", {:Authorization => "Bearer #{access_token}"}
             # res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{course.canvas_id}/assignments?per_page=40", {:Authorization => "Bearer #{access_token}"}
@@ -89,7 +84,6 @@ class ApplicationController < ActionController::Base
                 puts "Found #{a["name"]}"
                 assessment = Assessment.find_by(canvas_id: a["id"])
               end
-
               # get submission grade
               # change a["id"] to assessment.canvas_id
               pos = submissions.find_index {|s| s["assignment_id"] == a["id"]}
@@ -111,36 +105,5 @@ class ApplicationController < ActionController::Base
       # teacher signed in, no need to make API calls
       puts "Teacher signed in, no API calls needed"
     end
-
-
-
-
-=begin
-    courses.to_json
-
-    # Print course name
-
-    # print assignment name, submission grade, assignment points possible
-
-    courses.each do |c|
-      if c["enrollment_term_id"] == eti
-        # Print course name
-        puts "name: #{c["name"]}"
-        # get assignmnets for the course
-        res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{c["id"]}/assignments?per_page=40", {:Authorization => "Bearer #{access_token}"}
-        assignments = JSON.parse(res.body)
-        res = RestClient.get "https://myuni.adelaide.edu.au/api/v1/courses/#{c["id"]}/students/submissions?per_page=40", {:Authorization => "Bearer #{access_token}"}
-        submissions = JSON.parse(res.body)
-        assignments.each_with_index do |a|
-          print "    #{a["name"]}, "
-          # get submission grade
-          pos = submissions.find_index {|e| e["assignment_id"] == a["id"]}
-          print "grade: #{submissions[pos]["score"]}/#{a["points_possible"]}"
-          puts
-        end
-      end
-    end
-=end
-
   end
 end

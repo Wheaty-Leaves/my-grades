@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
 
   resources :courses do
-    resources :enrolments, only: %i[ new index create destroy ]
-    resources :assessments, only: %i[ new show index create destroy ]
-  end
+    resources :enrolments, only: %i[ new index create destroy ] do
+      resources :assessments, only: %i[ new index create show destroy ] do
+        resources :grades, only: %i[ new index create destroy ]
+      end
+    end
 
   resources :assessments do
     resources :grades, only: %i[ new show index create destroy ], shallow: true
+
   end
+
+  post 'courses/:id', to: 'courses#claim_course'
+  get 'my_courses', to: 'courses#my_courses'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
@@ -32,4 +38,5 @@ Rails.application.routes.draw do
   get 'authentication/login', to: 'authentications#new'
   post 'authentication/login', to: 'authentications#create'
   get 'authentication/logout', to: 'authentications#logout'
+
 end
