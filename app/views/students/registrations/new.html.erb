@@ -6,27 +6,27 @@
 
   <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
+    <%= f.text_field :first_name, :value => params[:first_name] %>
   </div>
 
   <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
+    <%= f.text_field :last_name, :value =>params[:last_name] %>
   </div>
 
   <div class="field">
-    <%= f.label :uniID %><br />
-    <%= f.text_field :uniID, autofocus: true %>
+    <%= f.label "University ID" %><br />
+    <%= f.text_field :uniID %>
   </div>
 
       <div class="field">
         <%= f.label "Access Token" %><br />
-        <%= f.text_field :access_token, autofocus: true %>
+        <%= f.text_field :access_token%>
       </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, :value => params[:email] %>
+    <%= f.email_field :email,  autofocus: true, :value => params[:email] %>
   </div>
 
   <div class="field">
@@ -34,7 +34,7 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
