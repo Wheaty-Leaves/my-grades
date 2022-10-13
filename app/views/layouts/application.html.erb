@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Your Grades</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= favicon_link_tag asset_path('adelaide-uni-logo.png') %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "application" %>
-    <% #= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <% #= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style>
-        body {
-            background-image: url(<%= asset_path 'adelaide-uni.jpg' %>);
-            background-size: cover;
-        }
+<head>
+  <title>Your Grades</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= favicon_link_tag asset_path('adelaide-uni-logo.png') %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= javascript_include_tag "application" %>
+  <% #= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <% #= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+      body {
+          background-image: url(<%= asset_path 'adelaide-uni.jpg' %>);
+          background-size: cover;
+      }
 
-        div.heading {
-            font-family: Inter;
-            color: #ffffff;
-            font-size: 35px;
-            display: inline-block;
-        }
-    </style>
-  </head>
+      div.heading {
+          font-family: Inter;
+          color: #ffffff;
+          font-size: 35px;
+          display: inline-block;
+      }
+  </style>
+</head>
 
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <div class="container-fluid heading">MyGrades</div>
+<body>
+<nav class="navbar navbar-light bg-primary justify-content-end">
+  <div class="container-fluid heading">MyGrades
     <ul class="navbar-nav">
       <li class="nav-item">
         <% if user_signed_in?  %>
+          <%= link_to "View All Courses", courses_path, :class => "m-2 btn btn-primary" %>
+          <%= link_to "My Courses", my_courses_path, :class => "m-2 btn btn-primary" %>
           <%= link_to "Logout", authentication_logout_path, :class => "m-2 btn btn-primary" %>
         <% end %>
       </li>
     </ul>
-  </nav>
-  <div style="text-align:justify; max-width:58.75em; margin:auto">
-    <%= render 'partials/alerts' %>
-    <%= yield %>
   </div>
-  </body>
+</nav>
+<div style="text-align:justify; max-width:58.75em; margin:auto">
+  <%= render 'partials/alerts' %>
+  <%= yield %>
+</div>
+</body>
 </html>
