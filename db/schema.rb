@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_234049) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_050021) do
   create_table "assessments", force: :cascade do |t|
     t.string "name"
-    t.integer "max_score"
+    t.float "max_score"
     t.date "due_date"
     t.date "release_date"
     t.datetime "created_at", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_234049) do
   create_table "grades", force: :cascade do |t|
     t.integer "student_id"
     t.integer "assessment_id"
-    t.integer "score"
+    t.float "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "canvas_student_id"

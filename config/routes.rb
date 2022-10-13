@@ -6,6 +6,10 @@ Rails.application.routes.draw do
         resources :grades, only: %i[ new index create destroy ]
       end
     end
+
+  resources :assessments do
+    resources :grades, only: %i[ new show index create destroy ], shallow: true
+
   end
 
   post 'courses/:id', to: 'courses#claim_course'

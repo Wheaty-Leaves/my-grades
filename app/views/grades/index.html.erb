@@ -1,17 +1,36 @@
 <p style="color: green"><%= notice %></p>
 <div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
 
-<h1>Grades</h1>
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
 
-<div id="grades">
-  <% @grades.each do |grade| %>
-    <%= render grade %>
-    <p>
-      <%= link_to "Show this grade", grade %>
-    </p>
-  <% end %>
-</div>
+
+  <h1 class="text-primary">Grades</h1>
+
+  <div id="enrolments">
+    <table class=" table table-striped container table-light" style = "border-radius: 6px; overflow: hidden;">
+      <thead class="thead-dark">
+      <tr>
+        <th class = "text-primary fs-4">Score</th>
+        <th class = "text-primary fs-4">Uploaded At</th>
+        <th class = "text-primary fs-4">Graded At</th>
+        <th class = "text-primary fs-4">Actions</th>
+      </tr>
+      </thead>
 
 <%= link_to "New grade", new_course_enrolment_assessment_grade_path %>
+      <tbody>
+      <% @grades.where(assessment_id: @assessment.id, student_id: currentUser.id).each do |grade| %>
+        <tr>
+          <%= render grade %>
+          <td><%= button_to 'Destroy', assessment_grade_path(@assessment, grade), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to "New grade", new_grade_path %><br>
+  <%= link_to "Back", assessment_path(@assessment) %>
+
 
 </div>

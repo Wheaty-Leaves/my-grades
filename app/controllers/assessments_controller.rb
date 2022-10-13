@@ -2,6 +2,7 @@ class AssessmentsController < ApplicationController
   before_action :set_enrolment, only: %i[ show destroy ]
   before_action :set_course, only: %i[ new show index destroy ]
   before_action :set_assessment, only: %i[ show edit update destroy ]
+  before_action :set_course, only: %i[ new index destroy ]
 
   # GET /assessments or /assessments.json
   def index
@@ -10,6 +11,7 @@ class AssessmentsController < ApplicationController
 
   # GET /assessments/1 or /assessments/1.json
   def show
+    @grades = Grade.where(assessment_id: @assessment.id, student_id: current_user.id)
   end
 
   # GET /assessments/new
@@ -54,7 +56,7 @@ class AssessmentsController < ApplicationController
     @assessment.destroy
 
     respond_to do |format|
-      format.html { redirect_to assessments_url, notice: "Assessment was successfully destroyed." }
+      format.html { redirect_to course_assessments_url(@course), notice: "Assessment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
