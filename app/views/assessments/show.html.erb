@@ -11,6 +11,7 @@
     <table class=" table table-striped container table-light" style = "border-radius: 6px; overflow: hidden;">
       <thead class="thead-dark">
       <tr>
+        <th class = "text-primary fs-4">Student ID</th>
         <th class = "text-primary fs-4">Score</th>
         <th class = "text-primary fs-4">Created At</th>
         <th class = "text-primary fs-4">Graded At</th>
@@ -30,7 +31,6 @@
   </div>
 
   <div>
-
     <%= button_to "Back to assessments", course_assessments_path(@assessment.course_id), method: :get, :class => "mr-2 btn btn-primary" %>
 
   </div>

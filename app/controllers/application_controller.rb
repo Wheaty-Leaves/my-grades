@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     puts "#{current_user}"
     if student_signed_in?
       current_datetime = DateTime.now.utc
-      if current_user.last_canvas_request == nil or ((current_datetime - current_user.last_canvas_request)).to_i  > (19*60)
+      if current_user.last_canvas_request == nil or ((current_datetime - current_user.last_canvas_request)).to_i  > (10*60)
         puts "student"
         #---do the API calls---
         # set the response body to nil
@@ -65,6 +65,9 @@ class ApplicationController < ActionController::Base
             else
               puts "Course found: #{c["name"]}"
               course = Course.find_by(canvas_id: c["id"])
+              if not Enrolment.exists?(student_id: current_user.id, course_id: course.id)
+                Enrolment.create(student_id: current_user.id, course_id: course.id)
+              end
             end
 
             # get assignmnets for the course

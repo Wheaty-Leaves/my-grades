@@ -5,30 +5,19 @@
   <h1 class="text-primary">Assessments</h1>
 
   <div id="assessments">
-    <table class=" table table-striped container table-light" style = "border-radius: 6px; overflow: hidden;">
-      <thead class="thead-dark">
-      <tr>
-        <th class = "text-primary fs-4">Name</th>
-        <th class = "text-primary fs-4">Max Score</th>
-        <th class = "text-primary fs-4">Due Date</th>
-        <th class = "text-primary fs-4">Release Date</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @assessments.where(course_id: @course.id).each do |assessment| %>
-        <tr>
-          <%= render assessment %>
-          <td><%= button_to "Show Grades", assessment_path(assessment), method: :get, :class => "mr-4 btn btn-primary" %></td>
-          <td><%= button_to 'Destroy', course_assessment_path(@course, assessment), data: {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn btn-danger btn-sm" %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+  <% if student_signed_in? %>
+    <%= render partial: "assessments/student_assessments" %>
+     <% else %>
+      <%= render partial: "assessments/teacher_assessments" %>
+    <% end %>
   </div>
 <% if teacher_signed_in?%>
   <%= button_to "New Assessment", new_assessment_path, method: :get, :class => "m-3 btn btn-primary"  %>
-<% end %>
-  <%= button_to "Back", course_path(@course), method: :get, :class => "m-3 btn btn-primary"  %>
+    <%= button_to "Back", course_path(@course), method: :get, :class => "m-3 btn btn-primary"  %>
+  <% else %>
+    <%= button_to "Back", my_courses_path, method: :get, :class => "m-3 btn btn-primary"  %>
+  <% end %>
+
+
 
 </div>
