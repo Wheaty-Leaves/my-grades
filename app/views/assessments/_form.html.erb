@@ -1,4 +1,4 @@
-<%= form_with(model: assessment) do |form| %>
+<%= form_with(model: @assessment, url: new_course_enrolment_assessment_path) do |form| %>
   <% if assessment.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(assessment.errors.count, "error") %> prohibited this assessment from being saved:</h2>
@@ -32,6 +32,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit :class => "ml-3 mt-3 btn btn-primary"  %>
   </div>
 <% end %>
