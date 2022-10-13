@@ -1,14 +1,34 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Assessments</h1>
+<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
 
-<div id="assessments">
-  <% @assessments.each do |assessment| %>
-    <%= render assessment %>
-    <p>
-      <%= link_to "Show this assessment", assessment %>
-    </p>
-  <% end %>
+
+  <h1 class="text-primary">Assessments</h1>
+
+  <div id="assessments">
+    <table class=" table table-striped container table-light" style = "border-radius: 6px; overflow: hidden;">
+      <thead class="thead-dark">
+      <tr>
+        <th class = "text-primary fs-4">Name</th>
+        <th class = "text-primary fs-4">Max Score</th>
+        <th class = "text-primary fs-4">Due Date</th>
+        <th class = "text-primary fs-4">Release Date</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @assessments.where(course_id: @course.id).each do |assessment| %>
+        <tr>
+          <%= render assessment %>
+          <td><%= button_to "Show Grades", assessment_path(assessment), method: :get, :class => "mr-4 btn btn-primary" %></td>
+          <td><%= button_to 'Destroy', course_assessment_path(@course, assessment), data: {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= button_to "New Assessment", new_course_assessment_path, method: :get, :class => "m-3 btn btn-primary"  %>
+  <%= button_to "Back", course_path(@course), method: :get, :class => "m-3 btn btn-primary"  %>
+
 </div>
-
-<%= link_to "New assessment", new_assessment_path %>

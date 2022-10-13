@@ -1,5 +1,7 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: %i[ show edit update destroy ]
+  before_action :set_assessment, only: %i[ show edit update destroy ]
+  before_action :index
 
   # GET /grades or /grades.json
   def index
@@ -61,6 +63,10 @@ class GradesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_grade
       @grade = Grade.find(params[:id])
+    end
+
+    def set_assessment
+      @assessment = Assessment.find(params[:assessment_id])
     end
 
     # Only allow a list of trusted parameters through.
