@@ -20,8 +20,7 @@
       <% @enrolments.each do |enrolment| %>
         <tr>
               <%= render enrolment %>
-              <td><%= button_to "Assessments", course_enrolment_assessments_path(@course, enrolment), method: :get, :class => "m-3 btn btn-primary" %></td>
-              <td><%= button_to 'Destroy', course_enrolment_path(@course, enrolment), data: {:confirm => 'Are you sure?'}, :method => :delete, :class => "m-3 btn btn-primary" %></td>
+              <td><%= button_to 'Destroy', course_enrolment_path(@course, enrolment), data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
         </tr>
       <% end %>
     </tbody>

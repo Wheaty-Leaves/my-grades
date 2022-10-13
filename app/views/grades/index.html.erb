@@ -1,5 +1,4 @@
 <p style="color: green"><%= notice %></p>
-<div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
 
 <div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
 
@@ -17,7 +16,6 @@
       </tr>
       </thead>
 
-<%= link_to "New grade", new_course_enrolment_assessment_grade_path %>
       <tbody>
       <% @grades.where(assessment_id: @assessment.id, student_id: currentUser.id).each do |grade| %>
         <tr>
@@ -31,6 +29,5 @@
 
   <%= link_to "New grade", new_grade_path %><br>
   <%= link_to "Back", assessment_path(@assessment) %>
-
 
 </div>

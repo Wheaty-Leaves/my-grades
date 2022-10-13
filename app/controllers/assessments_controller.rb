@@ -1,6 +1,4 @@
 class AssessmentsController < ApplicationController
-  before_action :set_enrolment, only: %i[ show destroy ]
-  before_action :set_course, only: %i[ new show index destroy ]
   before_action :set_assessment, only: %i[ show edit update destroy ]
   before_action :set_course, only: %i[ new index destroy ]
 
@@ -71,9 +69,9 @@ class AssessmentsController < ApplicationController
       @course = Course.find(params[:course_id])
     end
 
-    def set_enrolment
-      @enrolment = Enrolment.find(params[:enrolment_id])
-    end
+  def set_enrolment
+    @enrolment = Enrolment.find(params[:enrolment_id])
+  end
 
     # Only allow a list of trusted parameters through.
     def assessment_params

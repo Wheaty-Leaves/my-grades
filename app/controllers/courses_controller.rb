@@ -5,6 +5,9 @@ class CoursesController < ApplicationController
   # GET /courses or /courses.json
   def index
     @courses = Course.all
+    # if student_signed_in?
+    #   @courses = Course.where(assessment_id: @assessment.id, student_id: current_user.id)
+    # end
     c = Course.all
     puts "value of Course.all #{c.length}"
     @teachers = Array.new(@courses.length,nil)

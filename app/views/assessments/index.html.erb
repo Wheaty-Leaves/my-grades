@@ -2,18 +2,6 @@
 
 <div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
 
-    <h1>Assessments</h1>
-
-    <div id="assessments">
-      <% @assessments.each do |assessment| %>
-        <%= render assessment %>
-        <p>
-          <%#= link_to "Show this assessment", course_enrolment_assessment_path(@course, @enrolment, assessment), method: :get, :class => "btn btn-primary" %>
-        </p> <br/>
-    <% end %>
-    </div>
-
-    <%= link_to "New assessment", new_course_enrolment_assessment_path, :class => "ml-3 btn btn-primary" %>
 
   <h1 class="text-primary">Assessments</h1>
 
