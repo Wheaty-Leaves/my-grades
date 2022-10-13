@@ -1,6 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="rounded-4 mx-auto  h-100 w-100 p-3 border border-danger border-3" style = "background-color: white">
+  <%= render @assessment %>
+
 
 
   <h1 class="text-primary">Grades</h1>
@@ -27,18 +29,14 @@
     </table>
   </div>
 
+  <div>
+    <%= link_to "Edit this assessment", edit_assessment_path(@assessment) %> |
+    <%= link_to "Back to assessments", course_assessments_path(@assessment.course_id) %>
 
+    <%= button_to "Destroy this assessment", @assessment, method: :delete %>
+  </div>
 
 </div>
 
 
-<p style="color: green"><%= notice %></p>
 
-<%= render @assessment %>
-
-<div>
-  <%= link_to "Edit this assessment", edit_assessment_path(@assessment) %> |
-  <%= link_to "Back to assessments", assessments_path %>
-
-  <%= button_to "Destroy this assessment", @assessment, method: :delete %>
-</div>
