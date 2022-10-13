@@ -6,18 +6,12 @@ class Students::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   # def new
-  #   @student = Student.new
   # end
 
   # POST /resource
-  def create
-    # puts "#{params[:student][:access_token]}"
-    # temp = BCrypt::Password.create(params[:student][:access_token])
-    # puts "#{temp}"
-    # params[:student][:access_token] = temp
-    # puts "#{params[:student][:access_token]}"
-    super
-  end
+  #  def create
+  #end
+
 
   # GET /resource/edit
   # def edit

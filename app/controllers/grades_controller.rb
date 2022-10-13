@@ -27,7 +27,7 @@ class GradesController < ApplicationController
 
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to course_grades_url(@grade), notice: "Grade was successfully created." }
+        format.html { redirect_to course_grade_url(@grade), notice: "Grade was successfully created." }
         format.json { render :show, status: :created, location: @grade }
       else
         format.html { render :new, status: :unprocessable_entity }
