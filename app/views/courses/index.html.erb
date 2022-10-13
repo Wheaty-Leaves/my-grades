@@ -13,12 +13,16 @@
       </thead>
 
       <tbody>
-        <% @courses.each do |course| %>
+        <% @courses.each_with_index do |course, i| %>
+        <% if @teachers[i] == nil %>
           <tr>
             <%= render course %>
             <td><%= button_to "Show this course", course,
                               method: :get, :class => "btn btn-primary" %></td>
+            <td><%= button_to "Claim this course", course,
+                              method: :post, :class => "btn btn-primary" %></td>
           </tr>
+        <% end %>
         <% end %>
       </tbody>
     </table>
@@ -26,6 +30,6 @@
 
   <br>
 
-  <%= button_to "Create Course", new_course_path, method: :get, :class => "btn btn-primary"  %>
+  <%#= button_to "Create Course", new_course_path, method: :get, :class => "btn btn-primary"  %>
 
 </div>

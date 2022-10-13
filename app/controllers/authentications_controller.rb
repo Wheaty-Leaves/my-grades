@@ -21,19 +21,25 @@ class AuthenticationsController < ApplicationController
       # if does exist, redirect to specific session form
       # else provide a notice and redirect to sign up
       # student exists
+      # Give the name in the params too
+      email = params[:email]
+      first_split = /(.*?)\./
+      last_split = /\.(.*?)@/
+      first = email[first_split,1].capitalize()
+      last = email[last_split,1].capitalize()
       if @email == "student"
         if Student.exists?(email: params[:email])
           #authenticate_user! :student
           redirect_to new_student_session_path(:email => params[:email])
         else
-          redirect_to new_student_registration_path(:email => params[:email])
+          redirect_to new_student_registration_path(:first_name => first,:last_name => last,:email => params[:email])
         end
       elsif @email == "teacher"
         if Teacher.exists?(email: params[:email])
           #authenticate_user! :student
           redirect_to new_teacher_session_path(:email => params[:email])
         else
-          redirect_to new_teacher_registration_path(:email => params[:email])
+          redirect_to new_teacher_registration_path(:first_name => first,:last_name => last,:email => params[:email])
         end
       end
     else

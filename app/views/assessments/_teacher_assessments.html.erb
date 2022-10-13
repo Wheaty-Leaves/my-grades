@@ -1,0 +1,24 @@
+<table class=" table table-striped container table-light" style = "border-radius: 6px; overflow: hidden;">
+  <thead class="thead-dark">
+  <tr>
+    <th class = "text-primary fs-4">Name</th>
+    <th class = "text-primary fs-4">Max Score</th>
+    <th class = "text-primary fs-4">Due Date</th>
+    <th class = "text-primary fs-4">Release Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @assessments.where(course_id: @course.id).each do |assessment| %>
+    <tr>
+      <%= render assessment %>
+      <% if teacher_signed_in? %>
+        <td><%= button_to "Edit Grades", assessment_path(assessment), method: :get, :class => "mr-4 btn btn-primary" %></td>
+        <td><%= button_to 'Destroy', course_assessment_path(@course, assessment), data: {:confirm => 'Are you sure?'}, :method => :delete, :class => "btn btn-danger btn-sm" %></td>
+      <% else %>
+        <td><%= button_to "Show Grades", assessment_path(assessment), method: :get, :class => "mr-4 btn btn-primary" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

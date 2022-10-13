@@ -6,12 +6,20 @@ class AssessmentsController < ApplicationController
 
   # GET /assessments or /assessments.json
   def index
+    if student_signed_in?
+      @grades = Grade.where(course_id: @course.id, student_id: current_user.id)
+    end
     @assessments = Assessment.all.where course_id: params[:course_id]
+
   end
 
   # GET /assessments/1 or /assessments/1.json
   def show
-    @grades = Grade.where(assessment_id: @assessment.id, student_id: current_user.id)
+    if student_signed_in?
+      @grades = Grade.where(assessment_id: @assessment.id, student_id: current_user.id)
+    elsif teacher_signed_in?
+      @grades = Grade.all.where(assessment_id: @assessment.id)
+    end
   end
 
   # GET /assessments/new

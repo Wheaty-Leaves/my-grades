@@ -41,12 +41,16 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
-    @course_teacher = CourseTeacher.find_by course_id: @course.id
-    if not @course_teacher.nil?
-      teacher = Teacher.find(@course_teacher.teacher_id)
-      if not teacher.nil?
-        @teacher_first_name = teacher.first_name
-        @teacher_last_name = teacher.last_name
+    if student_signed_in?
+      redirect_to course_assessments_path(@course)
+    elsif teacher_signed_in?
+      @course_teacher = CourseTeacher.find_by course_id: @course.id
+      if not @course_teacher.nil?
+        teacher = Teacher.find(@course_teacher.teacher_id)
+        if not teacher.nil?
+          @teacher_first_name = teacher.first_name
+          @teacher_last_name = teacher.last_name
+        end
       end
     end
   end

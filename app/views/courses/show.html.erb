@@ -11,7 +11,7 @@
       <%= button_to "Edit this course", edit_course_path(@course), method: :get, :class => "mr-2 btn btn-primary" %>
       <%= button_to "View students", course_enrolments_path(@course), method: :get, :class => "mr-2 btn btn-primary" %>
       <%= button_to "View assignments", course_assessments_path(@course), method: :get, :class => "mr-2 btn btn-primary" %>
-      <%= button_to "Back to courses", courses_path, method: :get, :class => "mr-2 btn btn-primary" %>
+      <%= button_to "Back to courses", my_courses_path, method: :get, :class => "mr-2 btn btn-primary" %>
     </div>
     <div>
       <%= button_to "Destroy this course", @course, {method: :delete,  :class => "btn btn-danger btn-sm"} %>
