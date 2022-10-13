@@ -6,6 +6,13 @@ Rails.application.routes.draw do
         resources :grades, only: %i[ new index create destroy ]
       end
     end
+  end
+
+  resources :courses do
+    resources :enrolments, only: %i[ new index create destroy ]
+    resources :assessments, only: %i[ new show index create destroy ]
+  end
+
 
   resources :assessments do
     resources :grades, only: %i[ new show index create destroy ], shallow: true

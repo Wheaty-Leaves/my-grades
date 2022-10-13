@@ -72,7 +72,9 @@ class AssessmentsController < ApplicationController
     end
 
     def set_enrolment
-      @enrolment = Enrolment.find(params[:enrolment_id])
+      if not params[:enrolment_id].nil?
+        @enrolment = Enrolment.find(params[:enrolment_id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
